@@ -24,8 +24,12 @@ class Instructor:
         Args:
             name (str): The name of the instructor.
             instructor_id (int): The unique ID of the instructor.
+            
         """
-        pass
+        self.name = name
+        self.instructor_id = instructor_id
+        self.assign_courses = []
+    
 
 
     def assign_course(self, course):
@@ -38,6 +42,7 @@ class Instructor:
         Returns:
             None
         """
+        self.assign_courses.append(course)
         pass
 
 
