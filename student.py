@@ -29,6 +29,10 @@ class Student:
             name (str): The name of the student.
             student_id (int): The unique ID of the student.
         """
+        self.name = name
+        self.student_id = student_id
+        self.enrolled_courses = []
+        self.grades = {}
         pass
 
 
@@ -42,7 +46,12 @@ class Student:
         Returns:
             None
         """
-        pass
+        if all (prereq in self.enrolled_courses for prereq in course.prerequisites):
+            self.enrolled_courses.append(course)
+        else:
+            raise ValueError("Pre not found")
+
+        
 
     def drop_course(self, course):
         """
@@ -54,7 +63,11 @@ class Student:
         Returns:
             None
         """
-        pass
+        
+        if course in self.enroll_courses:
+            self.enroll_courses.remove(course)
+        else:
+            raise ValueError("course not found")
 
 
     def submit_grade(self, course, assessment, grade):
@@ -69,4 +82,10 @@ class Student:
         Returns:
             None
         """
+        if course in self.enroll_courses:
+            if course.course_name not in self.grades:
+                self.grades[course.course_name] = {}
+            self.grades[course.course_name][assessment] = grade
+        else:
+            raise ValueError("Student not enrolled")
         pass
